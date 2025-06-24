@@ -1,0 +1,19 @@
+﻿services:
+  ordersync.api:
+    image: ordersync.api
+    build:
+      context: .
+      dockerfile: src/OrderSync.API/Dockerfile
+
+  ordersync.api-1:
+    image: ordersync.api-1
+    build:
+      context: .
+      dockerfile: OrderSync.API/Dockerfile
+
+  ordersync.api-2:
+    image: ordersync.api-2
+    build:
+      context: .
+      dockerfile: src/OrderSync.API/Dockerfile
+

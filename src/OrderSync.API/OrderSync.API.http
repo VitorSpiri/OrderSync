@@ -1,0 +1,6 @@
+@OrderSync.API_HostAddress = http://localhost:5286
+
+GET {{OrderSync.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
