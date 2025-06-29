@@ -1,4 +1,6 @@
-﻿namespace UnitTests;
+﻿using OrderSync.Domain.Entities;
+
+namespace UnitTests;
 
 public class TestableEntity(Ulid id) : EntityBase(id);
 
