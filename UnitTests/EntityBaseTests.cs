@@ -19,11 +19,9 @@ public class EntityBaseTests
     public void EntityBase_WhenCreatedWithSameId_ShouldHaveCorrectProperties()
     {
         var id = Ulid.NewUlid();
-        var firstEntityId = id;
-        var secondEntityId = id;
+        var firstEntityId = new TestableEntity(id);
+        var secondEntityId = new TestableEntity(id);
         
-        Assert.Equal(id, firstEntityId);
-        Assert.Equal(id, secondEntityId);
         Assert.Equal(firstEntityId, secondEntityId);
         Assert.True(firstEntityId.Equals(secondEntityId));
     }
@@ -31,8 +29,8 @@ public class EntityBaseTests
     [Fact]
     public void EntityBase_WhenCreatedWithDifferentId_ShouldNotHaveCorrectProperties()
     {
-        var firstEntityId = Ulid.NewUlid();
-        var secondEntityId = Ulid.NewUlid();
+        var firstEntityId = new TestableEntity(Ulid.NewUlid());
+        var secondEntityId = new TestableEntity(Ulid.NewUlid());
         
         Assert.NotEqual(firstEntityId, secondEntityId);
         Assert.False(firstEntityId.Equals(secondEntityId));
