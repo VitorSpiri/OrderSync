@@ -1,6 +1,6 @@
 ﻿namespace OrderSync.Domain.Entities;
 
-public class EntityBase
+public abstract class EntityBase
 {
     public Ulid Id { get; protected set; }
 
