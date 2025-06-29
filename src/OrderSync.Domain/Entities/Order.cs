@@ -10,6 +10,9 @@ public class Order : EntityBase
     
     public Order(Ulid id, int code, Ulid customerId, decimal value, DateTime dueDate, OrderStatus status) : base(id)
     {
+        if(value <= 0)
+            throw new ArgumentException("Order must have a value greater than 0", nameof(value));
+        
         Id  = id;
         Code = code;
         CustomerId = customerId;
