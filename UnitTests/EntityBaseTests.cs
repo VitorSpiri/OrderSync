@@ -35,4 +35,13 @@ public class EntityBaseTests
         Assert.NotEqual(firstEntityId, secondEntityId);
         Assert.False(firstEntityId.Equals(secondEntityId));
     }
+
+    [Fact]
+    public void EntityBase_WhenCreatedWithNullableData_ShouldNotHaveCorrectProperties()
+    {
+        var id = Ulid.NewUlid();
+        var entity = new TestableEntity(id);
+        
+        Assert.False(entity.Equals(null));
+    }
 }
