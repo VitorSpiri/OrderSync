@@ -24,6 +24,17 @@ public class OrderTests
         Assert.StrictEqual(order.DueDate, dueDate);
         Assert.StrictEqual(order.Status, status);
     }
+
+    [Theory]
+    [InlineData(0)]
+    [InlineData(-10)]
+    public void Order_WhenCreatedWithInValidValue_ShouldThrowArgumentNullException(decimal value)
+    {
+        var exception = Assert.Throws<ArgumentException>(
+            () => new Order(Ulid.NewUlid(), 0, Ulid.NewUlid(), value, DateTime.UtcNow , OrderStatus.InProduction)
+            );
+        Assert.Equal("value", exception.ParamName);
+    }
     
     
 }
