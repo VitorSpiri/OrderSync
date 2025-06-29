@@ -1,7 +1,20 @@
 ﻿namespace UnitTests;
 
+public class TestableEntity(Ulid id) : EntityBase(id);
+
 public class EntityBaseTests
 {
+    [Fact]
+    public void EntityBase_WhenCreatedWithValidId_ShouldSetIdCorrectly()
+    {
+        var id = Ulid.NewUlid();
+        
+        var entity = new TestableEntity(id);
+        
+        Assert.Equal(id, entity.Id);
+    }
+    
+    
     [Fact]
     public void EntityBase_WhenCreatedWithSameId_ShouldHaveCorrectProperties()
     {
