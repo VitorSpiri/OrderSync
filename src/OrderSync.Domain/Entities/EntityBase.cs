@@ -8,4 +8,11 @@ public abstract class EntityBase
     {
         Id = id;
     }
+    
+    public override bool Equals(object obj)
+    {
+        if (obj is EntityBase other)
+            return Id == other.Id;
+        return false;
+    }
 }
