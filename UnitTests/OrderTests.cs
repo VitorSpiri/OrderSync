@@ -28,12 +28,24 @@ public class OrderTests
     [Theory]
     [InlineData(0)]
     [InlineData(-10)]
-    public void Order_WhenCreatedWithInValidValue_ShouldThrowArgumentNullException(decimal value)
+    public void Order_WhenCreatedWithInValidValue_ShouldThrowArgumentException(decimal value)
     {
-        var exception = Assert.Throws<ArgumentException>(
-            () => new Order(Ulid.NewUlid(), 0, Ulid.NewUlid(), value, DateTime.UtcNow , OrderStatus.InProduction)
-            );
+        var exception = Assert.Throws<ArgumentException>(() =>
+            new Order(Ulid.NewUlid(), 0, Ulid.NewUlid(), value, DateTime.UtcNow, OrderStatus.InProduction)
+        );
         Assert.Equal("value", exception.ParamName);
+    }
+
+    [Fact]
+    public void Order_WhenDueDateIsDelayed_ShouldThrowArgumentException()
+    {
+        var delayedDate = DateTime.UtcNow.AddDays(-1);
+
+        var exception = Assert.Throws<ArgumentException>(
+            () => new Order(Ulid.NewUlid(), 10, Ulid.NewUlid(), 150.50m, delayedDate, OrderStatus.InProduction)
+        );
+
+        Assert.Equal("dueDate", exception.ParamName);
     }
     
     

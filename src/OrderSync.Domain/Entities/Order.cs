@@ -12,6 +12,9 @@ public class Order : EntityBase
     {
         if(value <= 0)
             throw new ArgumentException("Order must have a value greater than 0", nameof(value));
+
+        if (dueDate < DateTime.UtcNow)
+            throw new ArgumentException("Due Date cannot be in the past", nameof(dueDate));
         
         Id  = id;
         Code = code;
